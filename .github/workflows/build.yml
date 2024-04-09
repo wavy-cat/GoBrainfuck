@@ -1,0 +1,62 @@
+name: Go Build Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - file: windows.exe
+            goos: windows
+            goarch: amd64
+          - file: windows-32.exe
+            goos: windows
+            goarch: 386
+          - file: windows-arm64.exe
+            goos: windows
+            goarch: arm64
+          - file: macos-intel
+            goos: darwin
+            goarch: amd64
+          - file: macos-arm
+            goos: darwin
+            goarch: arm64
+          - file: linux
+            goos: linux
+            goarch: amd64
+          - file: linux-32
+            goos: linux
+            goarch: 386
+          - file: linux-arm
+            goos: linux
+            goarch: arm
+          - file: linux-arm64
+            goos: linux
+            goarch: arm64
+
+    steps:
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Compile apps
+      env:
+        GOOS: ${{ matrix.goos }}
+        GOARCH: ${{ matrix.goarch }}
+      run: go build -v -o brainfuck-${{ matrix.file }} brainfuck
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: compiled-binaries
+        path: brainfuck-*
