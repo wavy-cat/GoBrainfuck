@@ -14,31 +14,31 @@ jobs:
         include:
           - file: windows.exe
             goos: windows
-            goarch: "amd64"
+            goarch: amd64
           - file: windows-32.exe
             goos: windows
-            goarch: "386"
+            goarch: 386
           - file: windows-arm64.exe
             goos: windows
-            goarch: "arm64"
+            goarch: arm64
           - file: macos-intel
             goos: darwin
-            goarch: "amd64"
+            goarch: amd64
           - file: macos-arm
             goos: darwin
-            goarch: "arm64"
+            goarch: arm64
           - file: linux
             goos: linux
-            goarch: "amd64"
+            goarch: amd64
           - file: linux-32
             goos: linux
-            goarch: "386"
+            goarch: 386
           - file: linux-arm
             goos: linux
-            goarch: "arm"
+            goarch: arm
           - file: linux-arm64
             goos: linux
-            goarch: "arm64"
+            goarch: arm64
 
     steps:
     - name: Setup Go
