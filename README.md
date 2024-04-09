@@ -32,7 +32,7 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) language interpreter with
 ./brainfuck-linux-arm64 [FILE PATH]
 ```
 
-> [!INFO]
+> [!NOTE]
 > If you see `permission denied: ./interpreter` error when running the file, make the file executable
 > by typing `chmod +x brainfuck`
 
@@ -79,7 +79,7 @@ you can print the number itself using the `*` command.
 
 ## Building the project
 
-> [!INFO]
+> [!NOTE]
 > Please note that compiled builds are available in Actions.
 
 1. Install the latest version of the Go compiler from the [official site](https://go.dev/dl/)

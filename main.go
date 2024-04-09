@@ -18,7 +18,7 @@ func main() {
 
 	data, err := os.ReadFile(args[1])
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	data = []byte(strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", ""))
