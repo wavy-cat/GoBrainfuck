@@ -11,25 +11,25 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) language interpreter with
 * Windows
 
 ```bash
-./brainfuck-windows.exe [FILE PATH]
-./brainfuck-windows-32.exe [FILE PATH]
-./brainfuck-windows-arm64.exe [FILE PATH]
+./brainfuck-windows.exe <file path> [memory allocation]
+./brainfuck-windows-32.exe <file path> [memory allocation]
+./brainfuck-windows-arm64.exe <file path> [memory allocation]
 ```
 
 * macOS
 
 ```bash
-./brainfuck-macos-intel [FILE PATH] # For Macs with Intel processors
-./brainfuck-macos-arm [FILE PATH] # For Macs with Apple M processors 
+./brainfuck-macos-intel <file path> [memory allocation] # For Macs with Intel processors
+./brainfuck-macos-arm <file path> [memory allocation] # For Macs with Apple M processors 
 ```
 
 * Linux
 
 ```bash
-./brainfuck-linux [FILE PATH]
-./brainfuck-linux-32 [FILE PATH]
-./brainfuck-linux-arm [FILE PATH]
-./brainfuck-linux-arm64 [FILE PATH]
+./brainfuck-linux <file path> [memory allocation]
+./brainfuck-linux-32 <file path> [memory allocation]
+./brainfuck-linux-arm <file path> [memory allocation]
+./brainfuck-linux-arm64 <file path> [memory allocation]
 ```
 
 > [!NOTE]
@@ -76,6 +76,19 @@ For example, `//69` will write the number 69 to the cell.
 Output is implemented via `fmt.Print()`. Usually, the character under the number written in the cell is displayed,
 however,
 you can print the number itself using the `*` command.
+
+## Memory allocation
+
+By default, the interpreter allocates 30,000 memory cells, by
+the [language design](https://en.wikipedia.org/wiki/Brainfuck#Language_design).
+But you can specify a different number of cells before starting the program.
+All you need to do is specify the desired number of memory cells in the launch command, placing the number immediately
+after the file path.
+Here is an example, where 100 memory cells are allocated:
+
+```bash
+./brainfuck-* <file path> 100
+```
 
 ## Building the project
 

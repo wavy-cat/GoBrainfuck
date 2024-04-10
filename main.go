@@ -26,15 +26,25 @@ func main() {
 	// Allocate memory and create necessary variables for the program
 	memory := make([]byte, 30000)
 	loopStack := make([]int, 0, 16)
-	var cursor uint16
+	var cursor uint
 	var pos int
 	var printUsed bool
+
+	if len(args) > 2 {
+		num, err := strconv.Atoi(args[2])
+		if err != nil {
+			panic(err)
+		} else if num < 1 {
+			panic("memory size is too small")
+		}
+		memory = make([]byte, num)
+	}
 
 	// Executing the code
 	for pos < len(data) {
 		switch data[pos] {
 		case '>':
-			if cursor == 29_999 {
+			if cursor == uint(len(memory)-1) {
 				fmt.Printf("Cursor: %d. Code pos (without LF and spaces): %d\n", cursor, pos)
 				panic("cursor overflow")
 			}
