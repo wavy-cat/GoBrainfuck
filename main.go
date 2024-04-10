@@ -16,9 +16,16 @@ func main() {
 		os.Exit(1)
 	}
 
+	if args[1] == "version" {
+		fmt.Println("GoBrainfuck v1.1.0\nBoost Software License 1.0\n" +
+			"https://github.com/wavy-cat/GoBrainfuck/releases/tag/v1.1.0")
+		os.Exit(0)
+	}
+
 	data, err := os.ReadFile(args[1])
 	if err != nil {
-		panic(err)
+		fmt.Println("Error reading file:", err)
+		os.Exit(1)
 	}
 
 	data = []byte(strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", ""))
