@@ -14,6 +14,8 @@ import (
 	"strings"
 )
 
+const version = "1.1.0"
+
 func main() {
 	// Open the file with the code
 	args := os.Args
@@ -24,8 +26,9 @@ func main() {
 	}
 
 	if args[1] == "version" {
-		fmt.Println("GoBrainfuck v1.1.0\nBoost Software License 1.0\n" +
-			"https://github.com/wavy-cat/GoBrainfuck/releases/tag/v1.1.0")
+		fmt.Printf("GoBrainfuck v%s\nBoost Software License 1.0\n"+
+			"https://github.com/wavy-cat/GoBrainfuck/releases/tag/v%s\n",
+			version, version)
 		os.Exit(0)
 	}
 
