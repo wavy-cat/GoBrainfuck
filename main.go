@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-const version = "1.1.0"
+const version = "1.2.0"
 
 func main() {
 	// Open the file with the code
@@ -50,11 +50,14 @@ func main() {
 	if len(args) > 2 {
 		num, err := strconv.Atoi(args[2])
 		if err != nil {
-			panic(err)
+			fmt.Println("Error parsing number:", err)
+			fmt.Println("The standard memory size of 30,000 cells will be used")
 		} else if num < 1 {
-			panic("memory size is too small")
+			fmt.Println("Memory size is too small. Please enter a number greater than 1.")
+			os.Exit(1)
+		} else {
+			memory = make([]byte, num)
 		}
-		memory = make([]byte, num)
 	}
 
 	// Executing the code
@@ -62,12 +65,19 @@ func main() {
 		switch data[pos] {
 		case '>':
 			if cursor == uint(len(memory)-1) {
-				fmt.Printf("Cursor: %d. Code pos (without LF and spaces): %d\n", cursor, pos)
-				panic("cursor overflow")
+				fmt.Println("Cursor overflow. Details:")
+				fmt.Printf("Cursor: %d. Target: %d. Code pos (without LF and spaces): %d\n", cursor, cursor+1, pos)
+				os.Exit(1)
 			}
 
 			cursor++
 		case '<':
+			if cursor == 0 {
+				fmt.Println("Cursor underflow. Details:")
+				fmt.Printf("Cursor: %d. Target: %d. Code pos (without LF and spaces): %d\n", cursor, cursor-1, pos)
+				os.Exit(1)
+			}
+
 			cursor--
 		case '+':
 			memory[cursor]++
@@ -84,13 +94,15 @@ func main() {
 			_, err = fmt.Scanln(&input)
 
 			if err != nil {
-				panic(err)
+				fmt.Println("Error reading:", err)
+				os.Exit(1)
 			}
 
 			if len(input) > 2 && input[0:2] == "//" {
 				i, err := strconv.Atoi(input[2:])
 				if err != nil {
-					panic(err)
+					fmt.Println("Error parsing number:", err)
+					os.Exit(1)
 				}
 				memory[cursor] = byte(i)
 			} else {
