@@ -74,7 +74,7 @@ func main() {
 		case '<':
 			if cursor == 0 {
 				fmt.Println("Cursor underflow. Details:")
-				fmt.Printf("Cursor: %d. Target: %d. Code pos (without LF and spaces): %d\n", cursor, cursor-1, pos)
+				fmt.Printf("Cursor: %d. Code pos (without LF and spaces): %d\n", cursor, pos)
 				os.Exit(1)
 			}
 
