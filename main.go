@@ -1,5 +1,5 @@
 /*
- *          Copyright WavyCat 2024 - 2025.
+ *                 Copyright WavyCat 2024.
  * Distributed under the Boost Software License, Version 1.0.
  *        (See accompanying file LICENSE or copy at
  *          https://www.boost.org/LICENSE_1_0.txt)
@@ -8,13 +8,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 )
 
-const version = "1.2.0"
+const version = "1.3.0"
 
 func main() {
 	// Open the file with the code
@@ -41,6 +42,7 @@ func main() {
 	data = []byte(strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", ""))
 
 	// Allocate memory and create necessary variables for the program
+	reader := bufio.NewReader(os.Stdin)
 	memory := make([]byte, 30000)
 	loopStack := make([]int, 0, 16)
 	var cursor uint
@@ -66,7 +68,8 @@ func main() {
 		case '>':
 			if cursor == uint(len(memory)-1) {
 				fmt.Println("Cursor overflow. Details:")
-				fmt.Printf("Cursor: %d. Target: %d. Code pos (without LF and spaces): %d\n", cursor, cursor+1, pos)
+				fmt.Printf("Cursor: %d. Target: %d. Memory size: %d. Code position (without LF and spaces): %d\n",
+					cursor, cursor+1, len(memory), pos)
 				os.Exit(1)
 			}
 
@@ -74,7 +77,8 @@ func main() {
 		case '<':
 			if cursor == 0 {
 				fmt.Println("Cursor underflow. Details:")
-				fmt.Printf("Cursor: %d. Code pos (without LF and spaces): %d\n", cursor, pos)
+				fmt.Printf("Cursor: %d. Target: -1. Memory size: %d. Code position (without LF and spaces): %d\n",
+					cursor, len(memory), pos)
 				os.Exit(1)
 			}
 
@@ -90,8 +94,8 @@ func main() {
 			printUsed = true
 			fmt.Print(memory[cursor])
 		case ',':
-			var input string
-			_, err = fmt.Scanln(&input)
+			input, err := reader.ReadString('\n')
+			input = strings.TrimSuffix(input, "\n")
 
 			if err != nil {
 				fmt.Println("Error reading:", err)
@@ -106,7 +110,11 @@ func main() {
 				}
 				memory[cursor] = byte(i)
 			} else {
-				memory[cursor] = input[0]
+				if len(input) == 0 {
+					memory[cursor] = 0
+				} else {
+					memory[cursor] = []byte(input)[0]
+				}
 			}
 		case '[':
 			if memory[cursor] == 0 {

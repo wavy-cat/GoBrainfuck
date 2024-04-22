@@ -68,6 +68,7 @@ go run brainfuck [FILE PATH]
 ### Input
 
 Input using `,` command works with `fmt.Scanln()`. The first byte of input is recorded.
+An empty string will write the value 0 to the cell.
 Usually, ASCII characters are accepted, but you can specify a number directly if you start the line with `//`.
 For example, `//69` will write the number 69 to the cell.
 
