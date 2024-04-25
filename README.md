@@ -90,6 +90,15 @@ Here is an example, where 100 memory cells are allocated:
 ./brainfuck-* <file path> 100
 ```
 
+## Installation on Linux
+
+This is an optional step.
+
+1. Download the file of the [latest version](https://github.com/wavy-cat/GoBrainfuck/releases/latest) of the interpreter.
+2. Make it executable by running `chmod +x brainfuck-*`.
+3. Move it to `/usr/bin` using the command `sudo mv brainfuck-* brainfuck`.
+4. Verify its functionality by executing `brainfuck version`.
+
 ## Building the project
 
 > [!NOTE]
