@@ -33,7 +33,7 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) language interpreter with
 ```
 
 > [!NOTE]
-> If you see `permission denied: ./interpreter` error when running the file, make the file executable
+> If you see `permission denied` error when running the file, make the file executable
 > by typing `chmod +x brainfuck-*`
 
 ### Running from source
