@@ -53,7 +53,7 @@ go run brainfuck <file path> [memory allocation]
 | `+`     | `memory[cursor]++`                  | Increase the value in the current cell by 1        |
 | `-`     | `memory[cursor]--`                  | Decrease the value in the current cell by 1        |
 | `.`     | `fmt.Print(string(memory[cursor]))` | Print the contents of the current cell             |
-| `,`     | `os.Stdin`                          | Store user input in a cell                         |
+| `,`     | `fmt.Scanln(&byte)`                 | Store user input in a cell                         |
 | `[`     | `for memory[cursor] != 0 {`         | Start of loop                                      |
 | `]`     | `}`                                 | End of loop                                        |
 | `*`     | `fmt.Print(memory[cursor])`         | Print the contents of the current cell in raw form |
