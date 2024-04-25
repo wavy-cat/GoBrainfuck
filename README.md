@@ -41,7 +41,7 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) language interpreter with
 To do this, you must have the [Go](https://go.dev/) 1.22+ compiler installed.
 
 ```bash
-go run brainfuck [FILE PATH]
+go run brainfuck <file path> [memory allocation]
 ```
 
 ## Commands
@@ -53,7 +53,7 @@ go run brainfuck [FILE PATH]
 | `+`     | `memory[cursor]++`                  | Increase the value in the current cell by 1        |
 | `-`     | `memory[cursor]--`                  | Decrease the value in the current cell by 1        |
 | `.`     | `fmt.Print(string(memory[cursor]))` | Print the contents of the current cell             |
-| `,`     | `fmt.Scanln(&byte)`                 | Store user input in a cell                         |
+| `,`     | `os.Stdin`                          | Store user input in a cell                         |
 | `[`     | `for memory[cursor] != 0 {`         | Start of loop                                      |
 | `]`     | `}`                                 | End of loop                                        |
 | `*`     | `fmt.Print(memory[cursor])`         | Print the contents of the current cell in raw form |
@@ -67,16 +67,15 @@ go run brainfuck [FILE PATH]
 
 ### Input
 
-Input using `,` command works with `fmt.Scanln()`. The first byte of input is recorded.
-An empty string will write the value 0 to the cell.
+Input using `,` command works with `os.Stdin`. The first byte of input is recorded.
+An empty input will write the value 0 to the cell.
 Usually, ASCII characters are accepted, but you can specify a number directly if you start the line with `//`.
 For example, `//69` will write the number 69 to the cell.
 
 ### Output
 
 Output is implemented via `fmt.Print()`. Usually, the character under the number written in the cell is displayed,
-however,
-you can print the number itself using the `*` command.
+however, you can print the number itself using the `*` command.
 
 ## Memory allocation
 
