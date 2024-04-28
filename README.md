@@ -67,7 +67,7 @@ go run brainfuck <file path> [memory allocation]
 
 ### Input
 
-Input using `,` command works with `os.Stdin`. The first byte of input is recorded.
+Input using `,` command works with `os.Stdin`. Only the first byte (the first character) is written.
 An empty input will write the value 0 to the cell.
 Usually, ASCII characters are accepted, but you can specify a number directly if you start the line with `//`.
 For example, `//69` will write the number 69 to the cell.
