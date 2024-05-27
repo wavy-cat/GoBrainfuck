@@ -5,10 +5,16 @@ on:
     branches: [ master ]
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/build.yml'
+      - 'examples/*'
+      - 'LICENSE'
   pull_request:
     branches: [ master ]
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/build.yml'
+      - 'examples/*'
+      - 'LICENSE'
 
 jobs:
   push_to_registry:

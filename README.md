@@ -44,6 +44,20 @@ To do this, you must have the [Go](https://go.dev/) 1.22+ compiler installed.
 go run brainfuck <file path> [memory allocation]
 ```
 
+### Docker usage
+
+This project is available as a Docker image and can be pulled from GitHub Container Registry.
+
+Dockerfile example:
+
+```dockerfile
+FROM ghcr.io/wavy-cat/gobrainfuck
+
+COPY . .
+
+ENTRYPOINT ["brainfuck", "main.bf"]
+```
+
 ## Commands
 
 | Command | Go Equivalent                       | Meaning                                            |

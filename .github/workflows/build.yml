@@ -5,10 +5,18 @@ on:
     branches: [ master ]
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/docker-build.yml'
+      - 'examples/*'
+      - 'LICENSE'
+      - 'Dockerfile'
   pull_request:
     branches: [ master ]
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/docker-build.yml'
+      - 'examples/*'
+      - 'LICENSE'
+      - 'Dockerfile'
 
 jobs:
   build:
