@@ -33,4 +33,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/wavy-cat/${{ github.repository }}:latest
+          tags: ghcr.io/wavy-cat/gobrainfuck:latest
