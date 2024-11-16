@@ -4,7 +4,7 @@ WORKDIR /src
 
 COPY go.mod main.go /src/
 
-RUN CGO_ENABLED=0 go build -o brainfuck
+RUN go build -o brainfuck
 
 FROM scratch
 LABEL authors="wavycat"
