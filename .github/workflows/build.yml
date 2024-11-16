@@ -70,5 +70,5 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: compiled-binaries
+        name: compiled-binaries-${{ matrix.goos }}-${{ matrix.goarch }}
         path: brainfuck-*
